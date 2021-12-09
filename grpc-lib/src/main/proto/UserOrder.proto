@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+option java_package = "com.lrbj.grpc.lib";
+
+service UserOrder{
+  rpc AddUserOrder(UORequest) returns(UOResponse) {}
+//  rpc DeleteOrder(ORequest) returns(UOResponse) {}
+  rpc UpdateOrder(order) returns(UOResponse) {}
+  rpc SelectOrder(RequestId) returns(OResponse) {}
+}
+
+message UORequest {
+    int32 id =1;
+    /**
+    *姓名
+     */
+    string nickname = 2;
+    /**
+     *用户名
+     */
+    string username = 3;
+    /**
+    *密码
+     */
+    string password =4;
+    message ORequest {
+      int32 id = 1;
+      /**
+       * 用户ID
+       */
+      int32 userid = 2;
+
+      /**
+       * 商品ID
+       */
+      int32  productid = 3;
+
+      /**
+       * 订单状态
+       */
+      int32 orderstatus = 4;
+    }
+    repeated ORequest ORequests = 5;
+}
+
+message UOResponse {
+  /*
+   *状态码
+   */
+  int32 code=1;
+  /*
+   *状态消息
+   */
+  string msg = 2;
+  /*
+   *内容
+   */
+  string data = 3;
+}
+
+message RequestId{
+  /*
+   *用户id
+   */
+  int32 userId = 1;
+}
+
+message OResponse {
+  repeated order orders = 1;
+}
+
+message order {
+  int32 id = 1;
+  /**
+   * 用户ID
+   */
+  int32 userid = 2;
+
+  /**
+   * 商品ID
+   */
+  int32  productid = 3;
+
+  /**
+   * 订单状态
+   */
+  int32 orderstatus = 4;
+}

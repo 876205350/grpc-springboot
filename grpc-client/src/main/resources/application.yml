@@ -1,0 +1,20 @@
+server:
+  port: 8003
+spring:
+  application:
+    name: local-grpc-client
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/imooc?serverTimezone=UTC
+    username: root
+    password: root
+grpc:
+  client:
+    local-grpc-server:
+      port: 8002
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.lrbj.grpcclient.entity
